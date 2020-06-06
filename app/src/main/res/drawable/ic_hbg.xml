@@ -1,0 +1,6 @@
+<vector android:height="24dp" android:viewportHeight="30"
+    android:viewportWidth="30" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#777" android:name="Rectangle 5" android:pathData="m1.438 3.726h27.111c0.663 0 1.2 0.537 1.2 1.2v1.253c0 0.663 -0.537 1.2 -1.2 1.2h-27.111c-0.663 0 -1.2 -0.537 -1.2 -1.2v-1.253c0 -0.663 0.537 -1.2 1.2 -1.2z"/>
+    <path android:fillColor="#777" android:name="Rectangle 5 copy" android:pathData="m1.438 12.954h27.111c0.663 0 1.2 0.537 1.2 1.2v1.253c0 0.663 -0.537 1.2 -1.2 1.2h-27.111c-0.663 0 -1.2 -0.537 -1.2 -1.2v-1.253c0 -0.663 0.537 -1.2 1.2 -1.2z"/>
+    <path android:fillColor="#777" android:name="Rectangle 5 copy 2" android:pathData="m1.438 22.182h27.111c0.663 0 1.2 0.537 1.2 1.2v1.253c0 0.663 -0.537 1.2 -1.2 1.2h-27.111c-0.663 0 -1.2 -0.537 -1.2 -1.2v-1.253c0 -0.663 0.537 -1.2 1.2 -1.2z"/>
+</vector>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:iconSpaceReserved="false">
+
+    <PreferenceCategory
+            android:title="알람"
+            app:iconSpaceReserved="false">
+
+        <SwitchPreference
+                android:defaultValue="false"
+                android:icon="@drawable/logo"
+                android:key="key_use_alarm"
+                android:summaryOff="알람을 사용하지 않습니다"
+                android:summaryOn="알람을 사용합니다"
+                android:title="알람 사용" />
+        <PreferenceScreen
+                android:defaultValue="false"
+                android:dependency="key_use_alarm"
+                android:icon="@drawable/logo"
+                android:key="key_set_alarm"
+                android:title="알람 설정">
+            <intent
+                    android:targetClass="kr.hs.emirim.sagittta.historendar.SetAlarmActivity"
+                    android:targetPackage="kr.hs.emirim.sagittta.historendar" />
+        </PreferenceScreen>
+
+        <SwitchPreference
+                android:defaultValue="true"
+                android:title="푸시 알림 사용"
+                android:summaryOff="푸시 알림을 사용하지 않습니다"
+                android:summaryOn="푸시 알림을 사용합니다"
+                android:icon="@drawable/logo"
+                android:key="key_use_push"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="기타"
+            app:iconSpaceReserved="false">
+
+        <PreferenceScreen
+                android:summary="히스토린더 페이스북 페이지로 이동"
+                android:title="오류 전송"
+                app:iconSpaceReserved="false">
+            <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://www.facebook.com/historender/" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

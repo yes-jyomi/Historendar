@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/menu_open"
+            android:icon="@drawable/ic_hbg"
+            android:title="Menu"
+            app:showAsAction="always"/>
+
+    <!--    <group android:checkableBehavior="single">-->
+    <!--        <item-->
+    <!--                android:id="@+id/setLevel"-->
+    <!--                android:icon="@drawable/ic_search"-->
+    <!--                android:title="우선순위 설정"/>-->
+    <!--        <item-->
+    <!--                android:id="@+id/setAlarm"-->
+    <!--                android:icon="@drawable/ic_hbg"-->
+    <!--                android:title="알람 설정"/>-->
+    <!--        <item-->
+    <!--                android:id="@+id/search"-->
+    <!--                android:icon="@drawable/ic_search"-->
+    <!--                android:title="검색"/>-->
+    <!--    </group>-->
+
+    <!--    <group android:checkableBehavior="single">-->
+    <!--        <item-->
+    <!--                android:id="@+id/themeSetting"-->
+    <!--                android:icon="@drawable/ic_select_theme"-->
+    <!--                android:title="테마 설정"/>-->
+    <!--        <item-->
+    <!--                android:id="@+id/bug_report"-->
+    <!--                android:icon="@drawable/ic_search"-->
+    <!--                android:title="오류 전송"/>-->
+    <!--    </group>-->
+
+</menu>

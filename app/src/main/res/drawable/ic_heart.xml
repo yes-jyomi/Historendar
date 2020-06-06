@@ -1,0 +1,4 @@
+<vector android:height="24dp" android:viewportHeight="40"
+    android:viewportWidth="40" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#f0aba4" android:name="좋아요 copy 2" android:pathData="m20.46 9.63c0 0 3.63 -5.97 10.4 -2.48c6.45 3.33 6.82 15.13 -10.3 26.26c0 0 -24.67 -16.59 -10.5 -26.26c0 0 5.8 -3.81 10.4 2.48z"/>
+</vector>

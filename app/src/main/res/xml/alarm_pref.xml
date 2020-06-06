@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:iconSpaceReserved="false">
+
+    <PreferenceCategory
+            android:title="알람"
+            app:iconSpaceReserved="false">
+
+        <SwitchPreference
+                android:defaultValue="false"
+                android:title="알람 사용"
+                android:summaryOff="알람을 사용하지 않습니다"
+                android:summaryOn="알람을 사용합니다"
+                android:icon="@drawable/logo"
+                android:key="key_use_alarm"/>
+        <PreferenceScreen
+                android:key="key_set_alarm"
+                android:dependency="key_use_alarm"
+                android:title="알람 설정"
+                android:icon="@drawable/logo"
+                android:defaultValue="false">
+            <intent
+                    android:targetPackage="kr.hs.emirim.sagittta.historendar"
+                    android:targetClass="kr.hs.emirim.sagittta.historendar.SetAlarmActivity"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="푸시알림"
+            app:iconSpaceReserved="false">
+
+        <SwitchPreference
+                android:defaultValue="false"
+                android:title="푸시 알림 사용"
+                android:summaryOff="푸시 알림을 사용하지 않습니다"
+                android:summaryOn="푸시 알림을 사용합니다"
+                android:icon="@drawable/logo"
+                android:key="key_use_push"/>
+        <PreferenceScreen
+                android:key="key_set_apush"
+                android:dependency="key_use_push"
+                android:title="푸시 알림 설정"
+                android:icon="@drawable/logo"
+                android:defaultValue="false">
+            <intent
+                    android:targetPackage="kr.hs.emirim.sagittta.historendar"
+                    android:targetClass="kr.hs.emirim.sagittta.historendar.SetPushActivity"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    
+</PreferenceScreen>
