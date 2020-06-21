@@ -134,6 +134,7 @@ public class DataAdapter
                     user.setEVENT(mCur.getString(1));
                     user.setDAY01(mCur.getString(2));
                     user.setDAY02(mCur.getString(3));
+                    user.setPHOTO(mCur.getBlob(4));
 
                     Log.d("sowon",user.DAY01);
                     Log.d("sowon",user.EVENT);
@@ -150,6 +151,9 @@ public class DataAdapter
             throw mSQLException;
         }
     }
+
+
+
 
 
     public List getNotiData(int month, int dayOfMonth)
@@ -179,8 +183,6 @@ public class DataAdapter
 //            String sql="SELECT * FROM historender ";
 
             Log.d("jyomi",sql);
-            //
-//            String sql ="SELECT * FROM " + TABLE_NAME+" WHERE EVENT LIKE '%조선%'";
 
             // 모델 넣을 리스트 생성
             List userList = new ArrayList();
@@ -272,5 +274,8 @@ public class DataAdapter
             throw mSQLException;
         }
     }
+
+
+
 
 }

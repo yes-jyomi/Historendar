@@ -6,6 +6,15 @@ public class User {
     public String DAY01; //
     public String DAY02; //
 
+    public byte[] PHOTO;
+    public byte[] getPHOTO() {
+        return PHOTO;
+    }
+
+    public void setPHOTO(byte[] PHOTO) {
+        this.PHOTO = PHOTO;
+    }
+
 
     public void setNUM(int num) {
         this.NUM = num;
@@ -38,4 +47,6 @@ public class User {
     public String getDAY02() {
         return DAY02;
     }
+
+
 }
