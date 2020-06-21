@@ -71,11 +71,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         viewholder.date_this.setText(mList.get(position).getDAY01());
         viewholder.event_this.setText(mList.get(position).getEVENT());
-        Log.d("sowon",mList.get(position).getPHOTO()+"");
-        if(mList.get(position).getPHOTO()!=null){
-            Bitmap bm = BitmapFactory.decodeByteArray(mList.get(position).getPHOTO(),0,mList.get(position).getPHOTO().length) ;
-            viewholder.Image.setImageBitmap(bm);
-        }
+        Log.d("sowon positon"+position,mList.get(position).getPHOTO()+"::"+mList.get(position).getEVENT());
+//        Log.d("sowon position"+position,viewholder.event_this.getText()+":::"+mList.get(position).getEVENT());
+            if(mList.get(position).getPHOTO()!=null){
+                Bitmap bm = BitmapFactory.decodeByteArray(mList.get(position).getPHOTO(),0,mList.get(position).getPHOTO().length) ;
+                viewholder.Image.setImageBitmap(bm);
+            }else {
+                viewholder.Image.setImageBitmap(null);
+            }
+
+
 
 
     }
