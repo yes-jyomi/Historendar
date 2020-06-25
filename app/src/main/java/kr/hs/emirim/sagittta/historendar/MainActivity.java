@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0;i<userList.size();i++){
             history_heart_list.add(userList.get(i).getEVENT());
-            Log.d("sowon", history_heart_list.toString()+"sowon"+i);
+//            Log.d("sowon", history_heart_list.toString()+"sowon"+i);
         }
 
 
@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0;i<userList.size();i++){
             history_heart_list.add(userList.get(i).getEVENT());
-            Log.d("sowon", history_heart_list.toString()+"sowon"+i);
+//            Log.d("sowon", history_heart_list.toString()+"sowon"+i);
         }
 
 

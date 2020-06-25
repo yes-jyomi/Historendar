@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -25,7 +28,10 @@ import java.util.List;
 
 import kr.hs.emirim.sagittta.historendar.DB.DataAdapter;
 import kr.hs.emirim.sagittta.historendar.DB.User;
+import kr.hs.emirim.sagittta.historendar.DatabaseHelperHeart;
 import kr.hs.emirim.sagittta.historendar.R;
+
+import static android.content.ContentValues.TAG;
 
 public class SearchMainActivity extends AppCompatActivity {
 
@@ -33,6 +39,7 @@ public class SearchMainActivity extends AppCompatActivity {
     public String search;
     Intent intent;
     private CustomAdapter mAdapter;
+    SQLiteDatabase db;
 
 
     @Override
@@ -55,11 +62,8 @@ public class SearchMainActivity extends AppCompatActivity {
                 Log.d("sowon",SearchEditText.getText().toString());
 
                 initLoadDB(SearchText);
-
             }
         });
-
-
 
         BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +72,7 @@ public class SearchMainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }//oncreate
 
     private void initLoadDB(String SEARCH_TEXT) {
 
@@ -90,6 +94,24 @@ public class SearchMainActivity extends AppCompatActivity {
 
         mDbHelper.close();
     }
+
+    void dbHeartUpdate(String tableName,int num, int heart) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("HEART", heart);
+
+        String nameArr[] = {num+""};
+
+        // 리턴값: 업데이트한 수
+        int n = db.update(tableName, contentValues, "num = ?", nameArr);
+
+        Log.d(TAG, "n: " + n);
+    }
+
+
+
+
+    // SELECT * FROM People WHERE age < "age" ORDER BY NAME
 
 
 

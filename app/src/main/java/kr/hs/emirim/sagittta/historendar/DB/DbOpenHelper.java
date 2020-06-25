@@ -2,9 +2,11 @@ package kr.hs.emirim.sagittta.historendar.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DbOpenHelper {
     private static final String DATABASE_NAME = "InnerDatabase(SQLite).db";
@@ -49,10 +51,15 @@ public class DbOpenHelper {
         mDB.close();
     }
 
-    public long insertColumn(int num, int like){
+    public void insertColumn(int num, int like){
+        Log.d("sowon insert","들어옴");
         ContentValues values = new ContentValues();
         values.put(mypage.NUM, num);
         values.put(mypage.LIKE, like);
-        return mDB.insert(mypage.TABLENAME0, null, values);
     }
+
+    public Cursor selectColumns(){
+        return mDB.query(mypage.TABLENAME0, null, null, null, null, null, null);
+    }
+
 }

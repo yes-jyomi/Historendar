@@ -136,8 +136,8 @@ public class DataAdapter
                     user.setDAY02(mCur.getString(3));
                     user.setPHOTO(mCur.getBlob(4));
 
-                    Log.d("sowon",user.DAY01);
-                    Log.d("sowon",user.EVENT);
+//                    Log.d("sowon",user.DAY01);
+//                    Log.d("sowon",user.EVENT);
                     // 리스트에 넣기
                     userList.add(user);
                 }
@@ -205,8 +205,8 @@ public class DataAdapter
                     user.setEVENT(mCur.getString(1));
                     user.setDAY01(mCur.getString(2));
                     user.setDAY02(mCur.getString(3));
-                    Log.d("sowon",user.DAY01);
-                    Log.d("sowon",user.EVENT);
+//                    Log.d("sowon",user.DAY01);
+//                    Log.d("sowon",user.EVENT);
                     // 리스트에 넣기
                     userList.add(user);
                 }
@@ -259,8 +259,8 @@ public class DataAdapter
                     user.setEVENT(mCur.getString(1));
                     user.setDAY01(mCur.getString(2));
                     user.setDAY02(mCur.getString(3));
-                    Log.d("sowon",user.DAY01);
-                    Log.d("sowon",user.EVENT);
+//                    Log.d("sowon",user.DAY01);
+//                    Log.d("sowon",user.EVENT);
                     // 리스트에 넣기
                     userList.add(user);
                 }
