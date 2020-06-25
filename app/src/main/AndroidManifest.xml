@@ -16,6 +16,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".mypage.MypageActivity"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +31,7 @@
                 android:theme="@android:style/Theme.Dialog" />
         <activity
                 android:name=".MainActivity"
-                android:label="@string/app_name">
-
-        </activity>
+                android:label="@string/app_name"></activity>
         <activity android:name=".PracActivity" />
         <activity android:name=".NavigationActivity" />
         <activity android:name=".AlarmListActivity" />
