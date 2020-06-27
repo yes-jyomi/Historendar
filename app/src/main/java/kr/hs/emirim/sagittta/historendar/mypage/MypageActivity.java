@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -29,17 +30,18 @@ public class MypageActivity extends AppCompatActivity {
     SQLiteDatabase db;
     private CustomAdapterMypage mAdapter;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
 
+        mSwipeRefreshLayout = findViewById(R.id.swipe_container);
         Button backBtn =(Button)findViewById(R.id.backBtn);
         DatabaseHelperHeart databaseHelper = new DatabaseHelperHeart(this, "DB", null, 1);
         db = databaseHelper.getWritableDatabase();
         DBSearch();
-
         initLoadDB(searchList);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,12 +49,21 @@ public class MypageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                DBSearch();
+                initLoadDB(searchList);
+            }
+        });
     }//oncreate
 
 
     void DBSearch() {
         Cursor cursor = null;
-
+        searchList.clear();
         try {
             cursor=db.rawQuery("SELECT * FROM LIKEY WHERE heart%2!=0;",null);
             Log.d("sowon","query");
