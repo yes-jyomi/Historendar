@@ -88,8 +88,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder viewholder, final int position) {
+    public void onBindViewHolder(@NonNull final CustomViewHolder viewholder, final int position) {
 
+        Context context = viewholder.mView.getContext();
+        DatabaseHelperHeart databaseHelper = new DatabaseHelperHeart(context, "DB", null, 1);
+        db = databaseHelper.getWritableDatabase();
 
         viewholder.date_this.setGravity(Gravity.LEFT);
         viewholder.event_this.setGravity(Gravity.LEFT);
@@ -104,6 +107,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             }
 
 
+        Cursor cursor = null;
+
+        try {
+            cursor=db.rawQuery("SELECT * FROM LIKEY WHERE heart%2!=0 and num="+mList.get(position).getNUM()+";",null);
+            Log.d("sowon","query");
+            if (cursor != null) {
+                while (cursor.moveToNext()){
+                    Log.d("sowon",cursor.getInt(cursor.getColumnIndex("NUM"))+"");
+                    viewholder.heartBtn.setBackgroundResource(R.drawable.ic_heart);
+                }
+
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+
         viewholder.heartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,15 +133,31 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 Log.d("sowon ",mList.get(position).getNUM()+"");
                 DatabaseHelperHeart databaseHelper = new DatabaseHelperHeart(context, "DB", null, 1);
                 db = databaseHelper.getWritableDatabase();
-
                 dbHeartUpdate("LIKEY",mList.get(position).getNUM());
-//        DBSearch("LIKEY", 23);
-                //2로나누어서 0이면 안누름 1이면 누름
-//                DBSearch("LIKEY",0);
 
-                DBSearch();
-                db.close();
-                databaseHelper.close();
+//                DBSearch();
+
+                Cursor cursor = null;
+
+                try {
+                    cursor=db.rawQuery("SELECT * FROM LIKEY WHERE heart%2!=0 and num="+mList.get(position).getNUM()+";",null);
+                    Log.d("sowon","query 온클릭 들어옴");
+                    viewholder.heartBtn.setBackgroundResource(R.drawable.ic_emptyheart);
+                    if (cursor != null) {
+                        while (cursor.moveToNext()){
+                            Log.d("sowon 찬칸","찬칸");
+                            Log.d("sowon",cursor.getInt(cursor.getColumnIndex("NUM"))+"");
+                            viewholder.heartBtn.setBackgroundResource(R.drawable.ic_heart);
+                        }
+                    }
+
+                } finally {
+                    if (cursor != null) {
+                        db.close();
+                        databaseHelper.close();
+                    }
+                }
+
             }
 
     });
@@ -134,15 +172,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     void dbHeartUpdate(String tableName,int num) {
-
-        //UPDATE userTbl SET Money = Money - 1000 WHERE Phone is null\
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("HEART","HEART"+1);
-
-        String nameArr[] = {num+""};
-
-        Cursor cursor = null;
-        int n=0;
         try{
             db.execSQL("update LIKEY set HEART=HEART+1 WHERE NUM="+num+";");
         }
@@ -151,28 +180,28 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         }
     }
 
-    void DBSearch() {
-        Cursor cursor = null;
-
-        try {
-            cursor=db.rawQuery("SELECT * FROM LIKEY WHERE heart%2!=0;",null);
-            Log.d("sowon","query");
-            if (cursor != null) {
-
-                while (cursor.moveToNext()) {
-                    int num = cursor.getInt(cursor.getColumnIndex("NUM"));
-                    int heart = cursor.getInt(cursor.getColumnIndex("HEART"));
-
-                    Log.d("sowon", "num: " + num + ", heart: " + heart);
-                }
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-
-    }//DBSearch
+//    void DBSearch() {
+//        Cursor cursor = null;
+//
+//        try {
+//            cursor=db.rawQuery("SELECT * FROM LIKEY WHERE heart%2!=0;",null);
+//            Log.d("sowon","query");
+//            if (cursor != null) {
+//
+//                while (cursor.moveToNext()) {
+//                    int num = cursor.getInt(cursor.getColumnIndex("NUM"));
+//                    int heart = cursor.getInt(cursor.getColumnIndex("HEART"));
+//                    Log.d("sowon", "num: " + num + ", heart: " + heart);
+//
+//                }
+//            }
+//        } finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+//
+//
+//    }//DBSearch
 
 }
