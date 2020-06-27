@@ -117,7 +117,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 //2로나누어서 0이면 안누름 1이면 누름
 //                DBSearch("LIKEY",0);
 
-                DBSearch("LIKEY");
+                DBSearch();
                 db.close();
                 databaseHelper.close();
             }
@@ -149,7 +149,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         Log.d(TAG, "n: " + n);
     }
 
-    void DBSearch(String tableName) {
+    void DBSearch() {
         Cursor cursor = null;
 
         try {

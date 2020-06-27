@@ -49,5 +49,9 @@
                     android:targetClass="kr.hs.emirim.sagittta.historendar.SetPushActivity"/>
         </PreferenceScreen>
     </PreferenceCategory>
+
+
+
+
     
 </PreferenceScreen>

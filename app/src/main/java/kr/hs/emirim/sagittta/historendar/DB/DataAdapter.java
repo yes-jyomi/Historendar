@@ -107,8 +107,7 @@ public class DataAdapter
         }
     }
 
-    public List getSearchData(String SEARCHTEXT)
-    {
+    public List getSearchData(String SEARCHTEXT) {
         try
         {
             String sql ="SELECT * FROM " + TABLE_NAME+" WHERE EVENT LIKE "+"'%"+SEARCHTEXT+"%'";
@@ -143,6 +142,46 @@ public class DataAdapter
                 }
 
             }
+            return userList;
+        }
+        catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+
+    public List getHeartData(List<String>heartList) {
+        try {
+            String sql = null;
+            List userList = new ArrayList();
+            User user = null;
+            Cursor mCur = null;
+            for (String str : heartList) {
+                sql = "SELECT * FROM " + TABLE_NAME + " WHERE NUM =" + str;
+
+                mCur = mDb.rawQuery(sql, null);
+                if (mCur != null) {
+                    // 칼럼의 마지막까지
+                    while (mCur.moveToNext()) {
+
+                        // TODO : 커스텀 모델 생성
+                        user = new User();
+
+                        // TODO : Record 기술
+                        // id, name, account, privateKey, secretKey, Comment
+                        user.setNUM(mCur.getInt(0));
+                        user.setEVENT(mCur.getString(1));
+                        user.setDAY01(mCur.getString(2));
+                        user.setDAY02(mCur.getString(3));
+                        user.setPHOTO(mCur.getBlob(4));
+
+                        // 리스트에 넣기
+                        userList.add(user);
+                    }//while (mCur.moveToNext())
+
+                }//if (mCur != null)
+            }//for문
             return userList;
         }
         catch (SQLException mSQLException)

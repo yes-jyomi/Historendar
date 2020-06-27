@@ -50,6 +50,7 @@ import java.util.Objects;
 import kr.hs.emirim.sagittta.historendar.DB.DataAdapter;
 import kr.hs.emirim.sagittta.historendar.DB.User;
 import kr.hs.emirim.sagittta.historendar.Search.SearchMainActivity;
+import kr.hs.emirim.sagittta.historendar.mypage.MypageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         initLoadDB();
 
         Button searchBtn=(Button)findViewById(R.id.searchBtn);
+        Button mypageHeart=(Button)findViewById(R.id.mypage);
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
@@ -101,6 +103,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, SetAlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        mypageHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, MypageActivity.class);
                 startActivity(intent);
             }
         });

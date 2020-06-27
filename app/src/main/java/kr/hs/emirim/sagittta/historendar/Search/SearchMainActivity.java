@@ -52,9 +52,6 @@ public class SearchMainActivity extends AppCompatActivity {
         final EditText SearchEditText=(EditText)findViewById(R.id.searchText);
 
 
-
-
-
         SearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

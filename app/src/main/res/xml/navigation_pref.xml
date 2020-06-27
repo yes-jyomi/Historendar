@@ -48,4 +48,21 @@
         </PreferenceScreen>
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="My"
+            app:iconSpaceReserved="false">
+        <PreferenceScreen
+                android:key="key_set_apush"
+                android:dependency="key_use_push"
+                android:title="마이페이지"
+                android:summary="내가 좋아요한 이벤트"
+                android:icon="@drawable/logo"
+                android:defaultValue="false">
+<!--            <intent-->
+<!--                    android:targetClass="kr.hs.emirim.sagittta.historendar.mypage.MypageActivity"-->
+<!--                    android:targetPackage="kr.hs.emirim.sagittta.historendar.mypage" />-->
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
