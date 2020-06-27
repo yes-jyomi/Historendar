@@ -45,6 +45,8 @@ public class CustomAdapterMypage extends RecyclerView.Adapter<CustomAdapterMypag
         protected TextView date_this;
         protected TextView event_this;
         protected ImageView Image;
+        protected Button emptyHeartBtn;
+
 
         public final View mView;
 
@@ -55,6 +57,8 @@ public class CustomAdapterMypage extends RecyclerView.Adapter<CustomAdapterMypag
             this.event_this= (TextView) view.findViewById(R.id.event);
             this.Image=(ImageView) view.findViewById(R.id.EventImage);
             this.heartBtn=(Button) view.findViewById(R.id.like);
+//            this.emptyHeartBtn=(Button)view.findViewById(R.id.fullLike);
+//            emptyHeartBtn.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -98,7 +102,6 @@ public class CustomAdapterMypage extends RecyclerView.Adapter<CustomAdapterMypag
 
 
         viewholder.heartBtn.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View v) {

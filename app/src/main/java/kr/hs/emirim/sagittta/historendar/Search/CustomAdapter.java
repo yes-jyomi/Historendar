@@ -134,19 +134,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     void dbHeartUpdate(String tableName,int num) {
-        Cursor cursor;
-
 
         //UPDATE userTbl SET Money = Money - 1000 WHERE Phone is null\
         ContentValues contentValues = new ContentValues();
-        contentValues.put("HEART",1);
+        contentValues.put("HEART","HEART"+1);
 
         String nameArr[] = {num+""};
 
-        // 리턴값: 업데이트한 수
-        int n = db.update(tableName, contentValues, "num = ?", nameArr);
-
-        Log.d(TAG, "n: " + n);
+        Cursor cursor = null;
+        int n=0;
+        try{
+            db.execSQL("update LIKEY set HEART=HEART+1 WHERE NUM="+num+";");
+        }
+        catch (Exception e){
+            Log.d("sowon customAdapter",e.toString());
+        }
     }
 
     void DBSearch() {
