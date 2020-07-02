@@ -70,103 +70,111 @@
 
         </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/dayBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--                android:id="@+id/dayBar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
 
-            <TextView
-                    android:id="@+id/sun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="S"
-                    android:textColor="@color/red" />
+<!--            <TextView-->
+<!--                    android:id="@+id/sun"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="S"-->
+<!--                    android:textColor="@color/red" />-->
 
-            <TextView
-                    android:id="@+id/mon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="M"
-                    android:textColor="@color/lGray" />
+<!--            <TextView-->
+<!--                    android:id="@+id/mon"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="M"-->
+<!--                    android:textColor="@color/lGray" />-->
 
-            <TextView
-                    android:id="@+id/tue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="T"
-                    android:textColor="@color/lGray" />
+<!--            <TextView-->
+<!--                    android:id="@+id/tue"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="T"-->
+<!--                    android:textColor="@color/lGray" />-->
 
-            <TextView
-                    android:id="@+id/wed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="W"
-                    android:textColor="@color/lGray" />
+<!--            <TextView-->
+<!--                    android:id="@+id/wed"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="W"-->
+<!--                    android:textColor="@color/lGray" />-->
 
-            <TextView
-                    android:id="@+id/thu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="T"
-                    android:textColor="@color/lGray" />
+<!--            <TextView-->
+<!--                    android:id="@+id/thu"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="T"-->
+<!--                    android:textColor="@color/lGray" />-->
 
-            <TextView
-                    android:id="@+id/fri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="F"
-                    android:textColor="@color/lGray" />
+<!--            <TextView-->
+<!--                    android:id="@+id/fri"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="F"-->
+<!--                    android:textColor="@color/lGray" />-->
 
-            <TextView
-                    android:id="@+id/sat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/noto_sans"
-                    android:gravity="center"
-                    android:text="S"
-                    android:textColor="@color/blue" />
+<!--            <TextView-->
+<!--                    android:id="@+id/sat"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:fontFamily="@font/noto_sans"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="S"-->
+<!--                    android:textColor="@color/blue" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-        <android.widget.CalendarView
+<!--        <android.widget.CalendarView-->
+<!--                android:id="@+id/calendarView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:focusedMonthDateColor="@color/colorPrimary" />-->
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusedMonthDateColor="@color/colorPrimary" />
+                app:mcv_selectionColor="@color/colorPrimary"
+                app:mcv_showOtherDates="defaults"/>
+
 
         <RelativeLayout
                 android:layout_width="match_parent"

@@ -13,46 +13,62 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
-import android.util.AttributeSet;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.Executors;
 
+import butterknife.BindView;
+
+import butterknife.ButterKnife;
 import kr.hs.emirim.sagittta.historendar.DB.DataAdapter;
 import kr.hs.emirim.sagittta.historendar.DB.User;
 import kr.hs.emirim.sagittta.historendar.Search.SearchMainActivity;
+import kr.hs.emirim.sagittta.historendar.decorators.EventDecorator;
+import kr.hs.emirim.sagittta.historendar.decorators.SaturdayDecorator;
+import kr.hs.emirim.sagittta.historendar.decorators.OneDayDecorator;
+import kr.hs.emirim.sagittta.historendar.decorators.SundayDecorator;
 import kr.hs.emirim.sagittta.historendar.mypage.MypageActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnDateSelectedListener {
+
+    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
+
+    @BindView(R.id.calendarView)
+            MaterialCalendarView widget;
 
     TextView txtResult;
 
@@ -89,6 +105,39 @@ public class MainActivity extends AppCompatActivity {
 
 //        처음 앱 시작 시 데이터 불러오기
         initLoadDB();
+        /////////////////////////
+
+//        캘린더
+//        TODO: 사건 있을 때 날짜 옆에 점으로 표시하기
+        ButterKnife.bind(this);
+
+        widget.setTileHeightDp(70);
+
+        final int[] months = new int[1];
+        final int[] days = new int[1];
+
+        widget.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                months[0] = date.getMonth();
+                days[0] = date.getDay();
+                String data = date.getYear() + " / " + months[0] + " / " + days[0];
+                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
+                Log.d("jyomi", "onSelectedDayChange: " + data);
+                Log.d("jyomi", "months[0]: " + months[0]);
+                initLoadDB(months[0], days[0]);
+            }
+        });
+        widget.setShowOtherDates(MaterialCalendarView.SHOW_DEFAULTS);
+
+        widget.addDecorators(
+                new SaturdayDecorator(),
+                new SundayDecorator(),
+                new TodayDecorator(),
+                oneDayDecorator
+        );
+
+        new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
 
         Button searchBtn=(Button)findViewById(R.id.searchBtn);
         Button mypageHeart=(Button)findViewById(R.id.mypage);
@@ -145,30 +194,68 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "푸시알림을 받지 않음.", Toast.LENGTH_SHORT).show();
         }
 
-        /////////////////////////
+    }
 
-//        캘린더
-//        TODO: 사건 있을 때 날짜 옆에 점으로 표시하기
-        View view;
-        CalendarView calendarView;
-        TextView whenDate;
+    @Override
+    public void onDateSelected(
+            @NonNull MaterialCalendarView widget,
+            @NonNull CalendarDay date,
+            boolean selected) {
+        oneDayDecorator.setDate(date.getDate());
+        widget.invalidateDecorators();
+    }
 
-        final int[] months = new int[1];
-        final int[] days = new int[1];
+    private class TodayDecorator implements DayViewDecorator {
+        private final CalendarDay today;
+        private final Drawable backgroundDrawable;
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                months[0] = month+1;
-                days[0] = dayOfMonth;
-                String data = year + " / " + (month + 1) + " / " + dayOfMonth;
-                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
-                Log.d("jyomi", "onSelectedDayChange: " + data);
-                Log.d("jyomi", "months[0]: " + months[0]);
-                initLoadDB(months[0], days[0]);
+        private TodayDecorator() {
+            today = CalendarDay.today();
+            backgroundDrawable = getResources().getDrawable(R.drawable.today_circle_background);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return today.equals(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.rgb(240, 171, 164)));
+//            view.setBackgroundDrawable(backgroundDrawable);
+        }
+    }
+
+    private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
+
+        @Override
+        protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
+            LocalDate temp = LocalDate.now().minusMonths(2);
+            final ArrayList<CalendarDay> dates = new ArrayList<>();
+            for (int i = 0; i < 30; i++) {
+                final CalendarDay day = CalendarDay.from(temp);
+                dates.add(day);
+                temp = temp.plusDays(5);
+            }
+
+            return dates;
+        }
+
+        @Override
+        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
+            super.onPostExecute(calendarDays);
+
+            if (isFinishing()) {
+                return;
+            }
+
+            widget.addDecorator(new EventDecorator(Color.rgb(240, 171, 164), calendarDays));
+        }
     }
 
 
