@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements OnDateSelectedLis
     Context context = null;
     PendingIntent pendingIntent = null;
     public List<User> userList;
+    public List<User> specialList;
 
     private Context mContext;
     private FloatingActionButton fab_main;
@@ -235,13 +236,26 @@ public class MainActivity extends AppCompatActivity implements OnDateSelectedLis
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            LocalDate temp = LocalDate.now().minusMonths(2);
+
+            DataAdapter mDbHelper = new DataAdapter(getApplicationContext());
+            mDbHelper.createDatabase();
+            mDbHelper.open();
+
+            specialDB();
+
+//            LocalDate temp = LocalDate.now().minusMonths(2);
+            LocalDate temp = LocalDate.parse(specialList.get(0).getDAY01()).withYear(2020);
+
+            Log.d("jyomi", "temp" + temp);
             final ArrayList<CalendarDay> dates = new ArrayList<>();
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 11; i++) {
+                temp = LocalDate.parse(specialList.get(i).getDAY01()).withYear(2020);
                 final CalendarDay day = CalendarDay.from(temp);
                 dates.add(day);
-                temp = temp.plusDays(5);
             }
+            Log.d("jyomi", "" + dates);
+
+            mDbHelper.close();
 
             return dates;
         }
@@ -382,6 +396,14 @@ public class MainActivity extends AppCompatActivity implements OnDateSelectedLis
 
 
 //    Database
+    private void specialDB() {
+        DataAdapter mDbHelper = new DataAdapter(getApplicationContext());
+        mDbHelper.createDatabase();
+        mDbHelper.open();
+        specialList = mDbHelper.getSpecialData();
+        mDbHelper.close();
+    }
+
 //    initLoadDB(): DB 에 있는 값을 리스트에 불러오는 함수
 //    앱 초기 실행 시 초기화 위해 ()와 (int months, int days) 로 나눔
 //    TODO: 리스트 값에 이미지 존재 시 이미지가 존재하다는 표시하기

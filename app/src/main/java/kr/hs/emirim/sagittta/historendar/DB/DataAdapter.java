@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -191,6 +193,38 @@ public class DataAdapter
         }
     }
 
+
+    public List getSpecialData() {
+        try
+        {
+            String sql ="SELECT DAY01 FROM " + TABLE_NAME+" WHERE SPECIAL=1";
+            // 모델 넣을 리스트 생성
+            List userList = new ArrayList();
+            // TODO : 모델 선언
+            User user = null;
+            Cursor mCur = mDb.rawQuery(sql, null);
+            if (mCur!=null)
+            {
+                // 칼럼의 마지막까지
+                while( mCur.moveToNext() ) {
+                    // TODO : 커스텀 모델 생성
+                    user = new User();
+                    // TODO : Record 기술
+                    user.setDAY01(mCur.getString(0));
+                    Log.d("sowon",user.DAY01);
+//                    Log.d("sowon",user.EVENT);
+                    // 리스트에 넣기
+                    userList.add(user);
+                }
+            }
+            return userList;
+        }
+        catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+    }
 
 
 
